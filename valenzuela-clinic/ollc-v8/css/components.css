@@ -1,0 +1,397 @@
+/* ============================================================
+   components.css  —  Reusable UI Components
+   OLLC Clinic Appointment & Reservation System
+   ============================================================ */
+
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform var(--trans), box-shadow var(--trans);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity var(--trans);
+}
+
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-card:hover::after { opacity: 1; }
+
+.stat-card.blue::after  { background: var(--info); }
+.stat-card.green::after { background: var(--accent); }
+.stat-card.amber::after { background: var(--warning); }
+.stat-card.red::after   { background: var(--danger); }
+
+/* Top row: label + icon */
+.stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-label  { font-size: 0.72rem; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+
+.stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.stat-card.blue  .stat-icon { background: var(--info-pale);    color: var(--info); }
+.stat-card.green .stat-icon { background: var(--accent-pale);  color: var(--accent); }
+.stat-card.amber .stat-icon { background: var(--warning-pale); color: var(--warning); }
+.stat-card.red   .stat-icon { background: var(--danger-pale);  color: var(--danger); }
+
+.stat-val  { font-size: 2rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.04em; font-family: var(--font); }
+.stat-sub  { font-size: 0.73rem; color: var(--text3); }
+
+
+/* ============================================================
+   CONTENT CARDS
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-title-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  color: var(--text2);
+  flex-shrink: 0;
+}
+
+.card-body { padding: 1.15rem 1.2rem; }
+
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+th {
+  padding: 0.52rem 1rem;
+  text-align: left;
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  font-size: 0.845rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  transition: background var(--trans);
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td      { background: var(--surface2); }
+
+.empty-row td {
+  text-align: center;
+  color: var(--text3);
+  padding: 2.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Monospace for IDs/codes */
+.mono { font-family: var(--font-mono); font-size: 0.78rem; }
+
+
+/* ============================================================
+   SEARCH + FILTER TOOLBAR
+   ============================================================ */
+.toolbar {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 150px;
+}
+
+.search-wrap i {
+  position: absolute;
+  left: 0.72rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.78rem;
+  color: var(--text3);
+  pointer-events: none;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 0.52rem 0.9rem 0.52rem 2.2rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-family: var(--font);
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color var(--trans);
+}
+.search-wrap input:focus { border-color: var(--accent); }
+.search-wrap input::placeholder { color: var(--text3); }
+
+.filter-select {
+  padding: 0.52rem 0.78rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-family: var(--font);
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--trans);
+}
+.filter-select:focus { border-color: var(--accent); }
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.3rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 1;
+}
+
+.modal-title { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.01em; }
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text3);
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-size: 0.95rem;
+}
+.modal-close:hover { background: var(--danger-pale); color: var(--danger); }
+
+.modal-body   { padding: 1.15rem 1.3rem; }
+.modal-footer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding: 0.9rem 1.3rem;
+  border-top: 1px solid var(--border);
+}
+
+
+/* ============================================================
+   NOTIFICATIONS
+   ============================================================ */
+.notif-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.notif-item {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--border);
+  transition: border-color var(--trans);
+}
+.notif-item.unread { background: var(--accent-pale); border-left-color: var(--accent); }
+
+.notif-dot  { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.42rem; }
+.notif-text { font-size: 0.84rem; line-height: 1.5; flex: 1; }
+.notif-time { font-size: 0.68rem; color: var(--text3); margin-top: 0.2rem; font-family: var(--font-mono); }
+
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline { display: flex; flex-direction: column; }
+
+.tl-item {
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.tl-item:last-child { border-bottom: none; }
+
+.tl-time { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text3); white-space: nowrap; width: 54px; flex-shrink: 0; padding-top: 0.15rem; }
+
+.tl-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.36rem;
+  box-shadow: 0 0 0 3px var(--accent-pale);
+}
+.tl-dot.urgent { background: var(--danger); box-shadow: 0 0 0 3px var(--danger-pale); }
+
+.tl-body { flex: 1; min-width: 0; }
+.tl-name { font-weight: 700; font-size: 0.86rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.tl-sub  { font-size: 0.76rem; color: var(--text3); margin-top: 0.1rem; }
+
+
+/* ============================================================
+   CHARTS
+   ============================================================ */
+.chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-bottom: 1.2rem; }
+.chart-wrap { position: relative; height: 190px; }
+
+
+/* ============================================================
+   REPORT BOXES
+   ============================================================ */
+.report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-bottom: 1.2rem; }
+
+.report-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  text-align: center;
+}
+.report-box .rval { font-size: 1.9rem; font-weight: 800; color: var(--text); letter-spacing: -0.04em; line-height: 1; }
+.report-box .rlbl { font-size: 0.72rem; color: var(--text3); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .stat-grid   { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .chart-grid  { grid-template-columns: 1fr; }
+  .report-grid { grid-template-columns: 1fr 1fr; }
+  .chart-wrap  { height: 210px; }
+}
+
+@media (max-width: 600px) {
+  .stat-grid   { gap: 0.6rem; margin-bottom: 1rem; }
+  .stat-card   { padding: 0.95rem 1rem; }
+  .stat-val    { font-size: 1.6rem; }
+  .card-body   { padding: 1rem; }
+  .card-header { padding: 0.85rem 1rem; }
+  .toolbar     { gap: 0.4rem; }
+  .modal       { max-height: 95vh; border-radius: var(--radius); }
+  .modal-body  { padding: 1rem; }
+  table        { min-width: 380px; }
+  .report-grid { grid-template-columns: 1fr; }
+  .chart-wrap  { height: 185px; }
+}
+
+@media (max-width: 400px) {
+  .stat-val    { font-size: 1.45rem; }
+  .card-body   { padding: 0.85rem 0.75rem; }
+  .modal-overlay { padding: 0.5rem; }
+  .modal-header, .modal-footer { padding: 0.85rem 1rem; }
+}

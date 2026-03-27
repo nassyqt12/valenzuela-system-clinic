@@ -1,0 +1,347 @@
+/* ============================================================
+   base.css  —  OLLC Clinic Appointment & Reservation System
+   Theme: Precision Clinical  |  Black & White + Dark Mode
+   Fonts: Outfit (display) · JetBrains Mono (data)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+
+/* ============================================================
+   COLOR TOKENS — Light Mode (default)
+   ============================================================ */
+:root {
+  /* Core backgrounds */
+  --bg:            #f4f6f9;
+  --surface:       #ffffff;
+  --surface2:      #eef1f6;
+  --surface3:      #e4e8f0;
+
+  /* Brand — near-black primary */
+  --primary:       #0b1120;
+  --primary-light: #1e2d4a;
+  --primary-pale:  #e8edf8;
+
+  /* Accent — clinical green */
+  --accent:        #059669;
+  --accent-light:  #10b981;
+  --accent-pale:   #d1fae5;
+
+  /* Status */
+  --danger:        #dc2626;
+  --danger-pale:   #fee2e2;
+  --warning:       #d97706;
+  --warning-pale:  #fef3c7;
+  --info:          #2563eb;
+  --info-pale:     #dbeafe;
+  --purple:        #7c3aed;
+  --purple-pale:   #ede9fe;
+
+  /* Text */
+  --text:          #0b1120;
+  --text2:         #4a5568;
+  --text3:         #94a3b8;
+  --text-inv:      #ffffff;
+
+  /* Borders & effects */
+  --border:        #dde3ee;
+  --border2:       #c8d0e0;
+  --radius:        10px;
+  --radius-sm:     6px;
+  --radius-lg:     16px;
+  --shadow:        0 1px 4px rgba(11,17,32,0.06), 0 4px 16px rgba(11,17,32,0.04);
+  --shadow-lg:     0 4px 24px rgba(11,17,32,0.10), 0 1px 4px rgba(11,17,32,0.06);
+  --shadow-accent: 0 4px 20px rgba(5,150,105,0.18);
+
+  /* Font */
+  --font:          'Outfit', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  /* Transition */
+  --trans:         0.2s ease;
+}
+
+/* ============================================================
+   COLOR TOKENS — Dark Mode
+   ============================================================ */
+body.dark {
+  --bg:            #080c14;
+  --surface:       #0f1623;
+  --surface2:      #161e2e;
+  --surface3:      #1e2840;
+
+  --primary:       #e8edf8;
+  --primary-light: #b8c4e0;
+  --primary-pale:  #1a2438;
+
+  --accent:        #10b981;
+  --accent-light:  #34d399;
+  --accent-pale:   #0d2e22;
+
+  --danger:        #f87171;
+  --danger-pale:   #2d1414;
+  --warning:       #fbbf24;
+  --warning-pale:  #2d1f08;
+  --info:          #60a5fa;
+  --info-pale:     #0f1f3d;
+  --purple:        #a78bfa;
+  --purple-pale:   #1e1540;
+
+  --text:          #e8edf8;
+  --text2:         #8896b0;
+  --text3:         #4a5a75;
+  --text-inv:      #0b1120;
+
+  --border:        #1e2840;
+  --border2:       #263350;
+  --shadow:        0 1px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --shadow-lg:     0 4px 32px rgba(0,0,0,0.4);
+  --shadow-accent: 0 4px 20px rgba(16,185,129,0.2);
+}
+
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--trans), color var(--trans);
+}
+
+button, input, select, textarea { font-family: var(--font); }
+
+.hidden { display: none !important; }
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.52rem 1.1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.855rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--trans);
+  position: relative;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--surface);
+}
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+.btn-primary.full { width: 100%; justify-content: center; }
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-accent:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+.btn-success { background: var(--accent); color: #fff; }
+.btn-success:hover { background: var(--accent-light); }
+
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { opacity: 0.88; }
+
+.btn-warning { background: var(--warning); color: #fff; }
+.btn-warning:hover { opacity: 0.88; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text2);
+  border: 1.5px solid var(--border);
+}
+.btn-ghost:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+
+.btn-sm { padding: 0.26rem 0.65rem; font-size: 0.775rem; border-radius: 5px; }
+
+
+/* ============================================================
+   DARK MODE TOGGLE
+   ============================================================ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all var(--trans);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+
+
+/* ============================================================
+   FORM FIELDS
+   ============================================================ */
+.form-group { margin-bottom: 0.9rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.32rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.58rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-family: var(--font);
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color var(--trans), box-shadow var(--trans), background var(--trans);
+}
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+}
+.form-control::placeholder { color: var(--text3); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.textarea-field { resize: vertical; min-height: 72px; }
+
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 50px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-pending     { background: var(--warning-pale); color: var(--warning); }
+.badge-approved    { background: var(--accent-pale);  color: var(--accent); }
+.badge-cancelled   { background: var(--danger-pale);  color: var(--danger); }
+.badge-rescheduled { background: var(--info-pale);    color: var(--info); }
+.badge-urgent      { background: var(--danger-pale);  color: var(--danger); border: 1px solid var(--danger); }
+.badge-normal      { background: var(--surface2);     color: var(--text2); }
+
+
+/* ============================================================
+   TOAST NOTIFICATIONS
+   ============================================================ */
+.toast-cont {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-width: calc(100vw - 2rem);
+}
+
+.toast {
+  background: var(--text);
+  color: var(--surface);
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  max-width: 310px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: toastIn 0.28s ease;
+}
+.toast.success { background: var(--accent);  color: #fff; }
+.toast.error   { background: var(--danger);  color: #fff; }
+
+@keyframes toastIn {
+  from { transform: translateY(12px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);    opacity: 1; }
+}
+
+
+/* ============================================================
+   INFO GRID (modal details)
+   ============================================================ */
+.info-grid { display: grid; gap: 0; font-size: 0.86rem; }
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { color: var(--text2); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; flex-shrink: 0; }
+.info-val   { font-weight: 600; text-align: right; word-break: break-word; }
+
+.detail-block {
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.95rem;
+  margin-top: 0.5rem;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  border-left: 3px solid var(--border2);
+}
+.detail-block.clinic { border-left-color: var(--accent); background: var(--accent-pale); color: var(--accent); }
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text3);
+}
+.empty-state .ei   { margin-bottom: 0.6rem; }
+.empty-state .ei i { font-size: 1.8rem; color: var(--text3); }
+.empty-state p     { font-size: 0.875rem; }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  .form-row { grid-template-columns: 1fr; }
+}
